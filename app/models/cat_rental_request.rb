@@ -30,12 +30,49 @@ class CatRentalRequest < ActiveRecord::Base
   def overlapping_approved_requests
     reqs = overlapping_requests
     overlapping_and_approved = reqs.select do |request|
-      request.status == "APPROVED"
+      request.status == "APPROVED" && request.id != self.id
     end
 
     unless overlapping_and_approved.empty?
       errors[:overlap] << "this request overlaps with an approved request!"
     end
   end
+
+  def overlapping_pending_requests
+    reqs = overlapping_requests
+    overlapping_and_pending = reqs.select do |request|
+      request.status == "PENDING" && request.id != self.id
+    end
+
+    overlapping_and_pending
+  end
+
+  def pending?
+    self.status == "PENDING"
+  end
+
+  def deny!
+    self.update_attribute(:status, "DENIED")
+    self.save!
+  end
+
+
+  def approve!
+    # self.update_attribute(:status, 'APPROVED')
+    overlapping_and_pending = overlapping_pending_requests
+    overlapping_ids = overlapping_and_pending.map{|req| req.id}
+
+    CatRentalRequest.transaction do
+      overlapping_and_pending.each do |request|
+        request.update_attribute(:status, "DENIED")
+        request.save!
+      end
+
+      self.update_attribute(:status, "APPROVED")
+      self.save!
+    end
+
+  end
+
 
 end
