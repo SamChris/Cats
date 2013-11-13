@@ -6,7 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Cat.create({name: "Earl", age:5, sex: 'M', birth_date:Time.now-1000, color:"red" })
-Cat.create({name: "Fred", age:5, sex: 'M', birth_date:Time.now-1000, color:"green" })
-Cat.create({name: "Lisa", age:5, sex: 'F', birth_date:Time.now-1000, color:"red" })
-Cat.create({name: "Jonathon", age:15, sex: 'M', birth_date:Time.now-1000, color:"blue" })
+
+Cat.create({name: "Earl", age:5, sex: 'M', birth_date:Date.today-5.years, color:"red" })
+Cat.create({name: "Fred", age:7, sex: 'M', birth_date:Date.today-7.years, color:"green" })
+Cat.create({name: "Lisa", age:3, sex: 'F', birth_date:Date.today-3.years, color:"red" })
+Cat.create({name: "Jonathon", age:15, sex: 'M', birth_date:Date.today-15.years, color:"blue" })
+
+
+CatRentalRequest.create({cat_id: 4, start_date: Date.today - 7.days, end_date: Date.today })
+CatRentalRequest.create({cat_id: 4, start_date: Date.today - 5.days, end_date: Date.today+ 7.days })
+
+CatRentalRequest.create({cat_id: 4, start_date: Date.today - 3.days, end_date: Date.today + 1.days})
+
+CatRentalRequest.create({cat_id: 2, start_date: Date.today-7.days, end_date: Date.today - 1.days })
