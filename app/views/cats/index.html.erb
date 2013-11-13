@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>All Cats!!</title>
+  </head>
+  <body>
+    <h1>All Cats</h1>
+    <br>
+    <br>
+    <table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Color</th>
+        <th>Birth Date</th>
+    </tr>
+
+    <% @cats.each do |cat| %>
+      <tr><td><%= link_to"#{cat.name}","cats/#{cat.id}" %></td>
+      <td><%= "#{cat.age}" %> </td>
+      <td><%= "#{cat.sex}" %></td>
+      <td><%= "#{cat.color}" %></td>
+      <td><%= "#{cat.birth_date}" %></td></tr>
+    <% end %>
+
+    </table>
+  </body>
+</html>

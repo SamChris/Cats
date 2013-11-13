@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Create a Cat!! </title>
+  </head>
+  <body>
+    <h1>Please specify your cat's attributes</h1>
+    <br>
+    <br>
+    <form action="/cats" method="post">
+      Cat's name:<input type="text" name="cat[name]"><br />
+      Cat's age:<input type="text" name="cat[age]"><br />
+      Cat's sex:
+      Male<input type="radio" name="cat[sex]" id="cat_sex_male" value="M">
+     Female<input type="radio" name="cat[sex]" id="cat_sex_female" value="F"><br />
+      Cat's color:<select name="cat[color]" id="cat_coat_color">
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        </select><br />
+      Cat's birth date:<input type="date" name="cat[birth_date]"><br />
+
+      <input type="submit" value="Create cat">
+
+    </form>
+  </body>
+</html>
