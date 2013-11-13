@@ -7,22 +7,8 @@
     <h1>Please modify <%= @cat.name %>'s attributes</h1>
     <br>
     <br>
-    <form action=<%= "/cats/#{@cat.id}"%> method="POST">
-      <input type="hidden" name="_method" value="PUT">
-      Cat's name:<input type="text" value =<%= @cat.name %> name="cat[name]"><br />
-      Cat's age:<input type="text" value =<%= @cat.age %> name="cat[age]"><br />
-      Cat's sex:
-      Male<input type="radio" <%= value = "checked"  if @cat.sex == "M" %> name="cat[sex]" id="cat_sex_male" value="M">
-     Female<input type="radio" <%= value = "checked" if @cat.sex == "F" %> name="cat[sex]" id="cat_sex_female" value="F"><br />
-      Cat's color:<select name="cat[color]" id="cat_coat_color">
-        <option value="red" <%= "selected" if @cat.color == "red" %> >Red</option>
-        <option value="green" <%= "selected" if @cat.color == "green" %> >Green</option>
-        <option value="blue" <%= "selected" if @cat.color == "blue" %> >Blue</option>
-        </select><br />
-      Cat's birth date:<input type="date" value =<%= @cat.birth_date %> name="cat[birth_date]"><br />
 
-      <input type="submit" value="Modify cat">
+    <%= render "form", :cat => @cat %>
 
-    </form>
   </body>
 </html>

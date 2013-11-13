@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Create a Cat!! </title>
-  </head>
-  <body>
-    <h1>Please modify <%= @cat.name %>'s attributes</h1>
-    <br>
-    <br>
-    <form action=<%= "/cats/#{@cat.id}"%> method="POST">
-      <input type="hidden" name="_method" value="PUT">
-      Cat's name:<input type="text" value =<%= @cat.name %> name="cat[name]"><br />
-      Cat's age:<input type="text" value =<%= @cat.age %> name="cat[age]"><br />
+    <form action="<% if @cat.persisted? %>
+                  <%=   "/cats/#{@cat.id}" %>
+                  <% else %>
+                  <%= "/cats" %>
+                  <% end%>" method="POST">
+
+
+
+     <%= '<input type="hidden" name="_method" value="PUT">'.html_safe if @cat.persisted? %>
+      Cat's name:<input type="text" value="<%= @cat.name %>" name="cat[name]"><br />
+      Cat's age:<input type="text" value="<%= @cat.age %>" name="cat[age]"><br />
       Cat's sex:
-      Male<input type="radio" <%= value = "checked"  if @cat.sex == "M" %> name="cat[sex]" id="cat_sex_male" value="M">
-     Female<input type="radio" <%= value = "checked" if @cat.sex == "F" %> name="cat[sex]" id="cat_sex_female" value="F"><br />
+      Male<input type="radio" <%= "checked".html_safe  if @cat.sex == "M" %> name="cat[sex]" id="cat_sex_male" value="M">
+     Female<input type="radio" <%= "checked".html_safe  if @cat.sex == "F" %> name="cat[sex]" id="cat_sex_female" value="F"><br />
       Cat's color:<select name="cat[color]" id="cat_coat_color">
-        <option value="red" <%= "selected" if @cat.color == "red" %> >Red</option>
-        <option value="green" <%= "selected" if @cat.color == "green" %> >Green</option>
-        <option value="blue" <%= "selected" if @cat.color == "blue" %> >Blue</option>
+        <option value="red" <%= "selected".html_safe if @cat.color == "red" %> >Red</option>
+        <option value="green" <%= "selected".html_safe if @cat.color == "green" %> >Green</option>
+        <option value="blue" <%= "selected".html_safe if @cat.color == "blue" %> >Blue</option>
         </select><br />
-      Cat's birth date:<input type="date" value =<%= @cat.birth_date %> name="cat[birth_date]"><br />
+      Cat's birth date:<input type="date" value="<%= @cat.birth_date %>" name="cat[birth_date]"><br />
 
       <input type="submit" value="Modify cat">
 
     </form>
-  </body>
-</html>
