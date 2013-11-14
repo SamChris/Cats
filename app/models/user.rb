@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
    primary_key: :id
    )
 
+   has_many(
+   :sessions,
+   class_name: "SessionHolder",
+   foreign_key: :user_id,
+   primary_key: :id
+   )
+
    def set_session_token
      session_token = SecureRandom::urlsafe_base64(16)
      if self.session_token.nil?
