@@ -1,4 +1,17 @@
 class CatRentalRequestsController < ApplicationController
+
+  before_filter :authorize, only:[:approve, :deny]
+
+
+  def authorize
+    unless current_user.id == Cat.find_by_id(params[:id]).user_id
+      flash[:error] = "You do not own this cat!"
+      redirect_to cats_url
+    end
+
+  end
+
+
   def new
     #@cat_rental_request = CatRentalRequest.new
     render :new

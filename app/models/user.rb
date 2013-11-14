@@ -3,6 +3,13 @@ class User < ActiveRecord::Base
    validates :user_name, uniqueness: true
    before_validation :set_session_token
 
+   has_many(
+   :cats,
+   class_name: "Cat",
+   foreign_key: :user_id,
+   primary_key: :id
+   )
+
    def set_session_token
      session_token = SecureRandom::urlsafe_base64(16)
      if self.session_token.nil?
