@@ -7,6 +7,9 @@
 
 
      <%= '<input type="hidden" name="_method" value="PUT">'.html_safe if @cat.persisted? %>
+     <input type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
       Cat's name:<input type="text" value="<%= @cat.name %>" name="cat[name]"><br />
       Cat's age:<input type="text" value="<%= @cat.age %>" name="cat[age]"><br />
       Cat's sex:

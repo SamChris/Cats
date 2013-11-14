@@ -56,7 +56,6 @@ class CatRentalRequest < ActiveRecord::Base
     self.save!
   end
 
-
   def approve!
     # self.update_attribute(:status, 'APPROVED')
     overlapping_and_pending = overlapping_pending_requests

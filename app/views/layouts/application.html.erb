@@ -6,6 +6,17 @@
 </head>
 <body>
 
+
+  <% if current_user.nil? %>
+    <%= link_to("Sign up", new_user_url) %>
+    <br>
+    <%= link_to("log in", new_session_url) %>
+  <% else %>
+    <%= "welcome to 99cats " +  current_user.user_name %>
+    <%= button_to("log out", session_url, method: :delete)%>
+  <% end %>
+
+
 <%= yield %>
 
 </body>

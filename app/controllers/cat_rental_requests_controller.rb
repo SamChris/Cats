@@ -14,13 +14,13 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def approve
-    cat = CatRentalRequest.find_by_id(params[:id])
+    cat = CatRentalRequest.find(params[:id])
     cat.approve!
     redirect_to cats_url
   end
 
   def deny
-    cat = CatRentalRequest.find_by_id(params[:id])
+    cat = CatRentalRequest.find(params[:id])
     cat.deny!
     redirect_to cats_url
   end
